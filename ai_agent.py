@@ -165,51 +165,9 @@ def custom_agent(env):
     # It is better to move than to stay idle since 
     # Idle Penalty is -20 and Move penalty is -10
     x, y = env.agent_pos
-    # dirty_cells = [
-    #     (-1, 0, 'UP', False),
-    #     (1, 0, 'DOWN', False),
-    #     (0, -1, 'LEFT', False),
-    #     (0, 1, 'RIGHT', False),
-    #     (-1, -1, 'UP', False), # Top left
-    #     (-1, 1, 'UP', False), # Top right
-    #     (1, -1, 'DOWN', False), # Bottom left
-    #     (1, 1, 'DOWN', False), # Bottom right
-    #     (-2, 0, 'UP', False), # Two away up
-    #     (2, 0, 'DOWN', False), # Two away down
-    #     (0, -2, 'LEFT', False), # Two away left
-    #     (0, 2, 'RIGHT', False), # Two away right
-    #     (-2, -1, 'UP', False), # Two away top left
-    #     (-2, 1, 'DOWN', False), # Two away top right
-    #     (1, -2, 'LEFT', False), # Two away bottom left
-    #     (1, 2, 'RIGHT', False), # Two away bottom right
-
-    #     # These diagonals need double actions returned to SEE dirty tiles
-    #     (-2, -2, 'UP', True), # Two away top left
-    #     (-2, 2, 'UP', True), # Two away top right
-    #     (2, -2, 'DOWN', True), # Two away bottom left
-    #     (2, 2, 'DOWN', True), # Two away bottom right
-
-    #     (-3, 0, 'UP', False), # Three away up
-    #     (3, 0, 'DOWN', False), # Three away down
-    #     (0, -3, 'LEFT', False), # Three away left
-    #     (0, 3, 'RIGHT', False), # Three away right
-    #     (-4, 0, 'UP', False), # Four away up
-    #     (4, 0, 'DOWN', False), # Four away down
-    #     (0, -4, 'LEFT', False), # Four away left
-    #     (0, 4, 'RIGHT', False) # Four away right
-    #     ]
 
     if env.grid[x][y] == 1:
         return 'SUCK'
-    
-    # # Check neighboring cells in all 8 directions (including diagonals and multiples) and avoid going out of bounds
-    # for dx, dy, action, diag_parity in dirty_cells:
-    #     nx, ny = x + dx, y + dy
-    #     if 0 <= nx < GRID_SIZE and 0 <= ny < GRID_SIZE:  # Only consider valid positions
-    #         if env.grid[nx][ny] == 1:
-    #             if diag_parity:
-    #                 return action * 2
-    #             return action
 
     # Checks every cell on grid for dirtiness and adds it to list
     dirty_cells = []
@@ -246,16 +204,6 @@ def custom_agent(env):
         return 'RIGHT'
     elif y > target_y:
         return 'LEFT'
-
-    # Move away from edges to gain better LOS of environment
-    # if x == 4:
-    #     return 'UP'
-    # elif x == 0:
-    #     return 'DOWN'
-    # if y == 4:
-    #     return 'LEFT'
-    # elif y == 0:
-    #     return 'RIGHT'
     
     # This might never return
     return 'STAY'
