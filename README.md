@@ -44,10 +44,10 @@ This program simulates an intelligent vacuum cleaner that moves around a 5x5 gri
 - Tkinter (included with most Python installations)
 
 ### Running the Simulation
-1. Save the script as `vacuum_simulation.py`.
+1. Save the script as `ai_agent.py`.
 2. Run the script using:
    ```sh
-   python vacuum_simulation.py
+   python ai_agent.py
    ```
 3. Observe the agent's behavior in the Tkinter window.
 4. After 200 turns, the performance summary will be displayed in the console.
